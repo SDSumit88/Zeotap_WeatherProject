@@ -1,0 +1,107 @@
+/* Overall page styling with parallax effect */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+    margin: 0;
+    padding: 0;
+    color: #333;
+    height: 100vh;
+    overflow-x: hidden;
+    perspective: 1000px;
+}
+
+h1 {
+    color:salmon;
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.6);
+    transform: translateZ(50px);
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    transform: translateZ(30px);
+}
+
+.weather-summary {
+    border: 2px solid #0077cc;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    background-color: rgba(240, 248, 255, 0.95);
+    box-shadow: 0 4px 12px rgba(0, 119, 204, 0.3);
+}
+
+.weather-summary h2 {
+    color: #0077cc;
+    margin: 0 0 15px;
+    font-size: 1.8em;
+    text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.weather-summary p {
+    color: #333;
+    font-size: 1.1em;
+    margin: 8px 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.alert {
+    background-color: #ff6f61;
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 2px solid #ff6f61;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(255, 87, 51, 0.5);
+    transform: translateZ(20px);
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #0077cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    transform: translateZ(20px);
+}
+
+button:hover {
+    background-color: #005f99;
+}
+
+/* Adding a 3D background effect with parallax scrolling */
+.parallax-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: url(https://openweathermap.org/themes/openweathermap/assets/img/autumn_banner_main_page.jpg) no-repeat center center;
+    background-size: cover;
+    transform: translateZ(-200px) scale(1.5);
+    filter: blur(2px) brightness(0.9);
+}

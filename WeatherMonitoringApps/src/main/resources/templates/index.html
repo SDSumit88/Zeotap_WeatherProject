@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Monitoring System</title>
+	<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+	<div class="parallax-background"></div> <!-- 3D parallax background -->
+    <div class="container">
+        <h1>Weather Monitoring System</h1>
+        <!-- Input field for city selection -->
+        <label for="city">Select City:</label>
+        <input type="text" id="city" placeholder="Enter city name">
+        <button id="fetchWeatherBtn">Get Weather Summary</button>
+        
+        <!-- Weather summary and alerts display -->
+        <div id="weather-summary" class="weather-summary"></div>
+        <div id="alerts"></div>
+    </div>
+    
+    <script>
+        // Function to fetch daily weather summaries based on city and display them
+        function fetchWeatherSummary(city) {
+			// First, fetch the weather data and save it
+			   fetch(`/weather/fetch?city=${city}`)  // Fetch and save the weather data
+			       .then(response => {
+			           if (!response.ok) {
+			               throw new Error('Network response was not ok while fetching weather data');
+			           }
+			           return response.json();
+			       })
+			       .then(data => {
+			           console.log('Weather data saved:', data);
+			           // Now fetch the daily summary
+			           return fetch(`/weather/summary?city=${city}`);
+			       })
+			       .then(response => {
+			           if (!response.ok) {
+			               throw new Error('Network response was not ok while fetching summary');
+			           }
+			           return response.json();
+			       })
+			       .then(summary => {
+			           const summaryDiv = document.getElementById('weather-summary');
+			           summaryDiv.innerHTML = `
+			               <h2>Daily Weather Summary for ${city}</h2>
+			               <p>Average Temperature: ${summary.averageTemperature.toFixed(2)} °C</p>
+			               <p>Max Temperature: ${summary.maxTemperature.toFixed(2)} °C</p>
+			               <p>Min Temperature: ${summary.minTemperature.toFixed(2)} °C</p>
+			               <p>Average Humidity: ${summary.averageHumidity.toFixed(2)} %</p>
+			               <p>Average Wind Speed: ${summary.averageWindSpeed.toFixed(2)} m/s</p>
+			               <p>Dominant Condition: ${summary.dominantCondition}</p>
+			           `;
+
+			           // Call fetchAlerts with the maxTemperature, averageHumidity, and averageWindSpeed to check alerts
+			           fetchAlerts(summary.maxTemperature, summary.averageHumidity, summary.averageWindSpeed);
+			       })
+			       .catch(error => console.error('Error:', error));
+		}
+
+        // Function to display alerts based on the maximum temperature, humidity, and wind speed
+        function fetchAlerts(maxTemperature, averageHumidity, averageWindSpeed) {
+            const alertsDiv = document.getElementById('alerts');
+            alertsDiv.innerHTML = '';  // Clear previous alerts
+
+            // Check if max temperature exceeds the limit
+            if (maxTemperature > 31) {
+                alertsDiv.innerHTML += `
+                    <div class="alert">
+                        <b>Alert! Temperature exceeds 31°C in selected city.<b>
+                    </div>
+                `;
+            }
+
+            // Check if humidity exceeds 80% (you can adjust this threshold)
+            if (averageHumidity > 80) {
+                alertsDiv.innerHTML += `
+                    <div class="alert">
+                        <b>Alert! Humidity exceeds 80% in selected city.<b>
+                    </div>
+                `;
+            }
+
+            // Check if wind speed exceeds 10 m/s (you can adjust this threshold)
+            if (averageWindSpeed > 10) {
+                alertsDiv.innerHTML += `
+                    <div class="alert">
+                        <b>Alert! Wind speed exceeds 10 m/s in selected city.<b>
+                    </div>
+                `;
+            }
+        }
+
+        // Add event listener to fetch weather on button click
+        document.getElementById('fetchWeatherBtn').addEventListener('click', function() {
+            const city = document.getElementById('city').value;  // Get city input from the user
+            if (city) {
+                fetchWeatherSummary(city);  // Fetch the weather for the selected city
+            } else {
+                alert('Please enter a city name');
+            }
+        });
+
+        // Optionally, you could fetch default city weather on page load
+        // window.onload = function() {
+        //     fetchWeatherSummary('Bangalore');  // Default city
+        // };
+    </script>
+</body>
+</html>
