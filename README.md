@@ -19,37 +19,6 @@ The Weather Monitoring System is a real-time application built to retrieve, moni
 ## Dependencies
 The project uses the following dependencies, which are managed via Maven. Ensure you have these in your `pom.xml` file:
 
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>WeatherMonitoringApps</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>WeatherMonitoringApps</name>
-	<description>This is Weather Monitoring Application which gives Real-Time Data Updates</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
-	<properties>
-		<java.version>17</java.version>
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -59,10 +28,10 @@ The project uses the following dependencies, which are managed via Maven. Ensure
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-<dependency>
+ <dependency>
            <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-web</artifactId>
-      <exclusions>
+       <exclusions>
          <exclusion>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
