@@ -28,16 +28,18 @@ The project uses the following dependencies, which are managed via Maven. Ensure
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
- <dependency>
+<dependency>
            <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-web</artifactId>
-       <exclusions>
+      <exclusions>
          <exclusion>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
          </exclusion>
     </exclusions>
 </dependency>
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
